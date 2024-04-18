@@ -10,7 +10,7 @@ class SearchByKeywordUseCase(private val weatherAppRepository: WeatherAppReposit
 
     suspend fun invoke(keyword: String): Flow<List<Location>> = flow {
         val response = weatherAppRepository.getLocationsByKeyword(keyword)
-        if (!response.isSuccessful) {
+        if (response.isSuccessful) {
             emit(response.body() ?: emptyList())
         } else {
             emit(emptyList())

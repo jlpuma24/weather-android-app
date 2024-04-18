@@ -1,6 +1,7 @@
 package co.bold.weather.data.remote
 
 import co.bold.weather.BuildConfig
+import co.bold.weather.data.model.ForecastResponse
 import co.bold.weather.data.model.Location
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,9 +15,9 @@ interface WeatherAppSearchApiService {
     ): Response<List<Location>>
 
     @GET(BuildConfig.FORECAST_PATH)
-    suspend fun searchForecastLocations(
-        @Query("key") apiKey: String = BuildConfig.API_KEY,
+    suspend fun getForecastByKeywordAndDays(
         @Query("q") query: String,
-        @Query("days") days: Int,
-    ): Response<List<Location>>
+        @Query("days") days: Int = 3,
+        @Query("key") apiKey: String = BuildConfig.API_KEY,
+    ): Response<ForecastResponse>
 }

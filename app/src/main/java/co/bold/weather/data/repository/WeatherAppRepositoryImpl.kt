@@ -1,5 +1,6 @@
 package co.bold.weather.data.repository
 
+import co.bold.weather.data.model.ForecastResponse
 import co.bold.weather.data.model.Location
 import co.bold.weather.data.remote.WeatherAppSearchApiService
 import co.bold.weather.domain.WeatherAppRepository
@@ -10,5 +11,11 @@ class WeatherAppRepositoryImpl(private val weatherAppSearchApiService: WeatherAp
 
     override suspend fun getLocationsByKeyword(string: String): Response<List<Location>> {
         return weatherAppSearchApiService.searchLocations(string)
+    }
+
+    override suspend fun getForecastByKeywordAndDays(
+        string: String
+    ): Response<ForecastResponse> {
+        return weatherAppSearchApiService.getForecastByKeywordAndDays(string)
     }
 }

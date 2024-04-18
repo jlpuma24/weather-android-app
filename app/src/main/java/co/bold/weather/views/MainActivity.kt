@@ -1,9 +1,7 @@
 package co.bold.weather.views
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.viewModelScope
 import co.bold.weather.databinding.ActivityMainBinding
 import co.bold.weather.views.states.SearchLocationUiState
 import co.bold.weather.views.viewmodels.WeatherViewModel
@@ -26,16 +24,27 @@ class MainActivity: AppCompatActivity() {
     private fun observeViewModel() {
         weatherViewModel.searchKeywordState.observe(this@MainActivity) { state ->
             when (state) {
-                is SearchLocationUiState.Error -> {
+                is SearchLocationUiState.ErrorSearchLocation -> {
 
                 }
                 is SearchLocationUiState.Loading -> {
 
                 }
-                is SearchLocationUiState.Success -> {
-                    Log.i("list", state.list.toString())
+                is SearchLocationUiState.SuccessSearchLocation -> {
+
+                }
+
+                is SearchLocationUiState.ErrorSearchForecastLocation -> {
+
+                }
+                is SearchLocationUiState.SuccessSearchForecastLocation -> {
+
                 }
             }
         }
+    }
+
+    private fun requestForecastLocation() {
+        weatherViewModel.getLocationsForecastByKeyword("Medell")
     }
 }
