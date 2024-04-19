@@ -38,7 +38,7 @@ class WeatherViewModel(
                         SearchLocationUiState.SuccessSearchForecastLocation(it.forecast)
                 } else {
                     _searchKeywordState.value =
-                        SearchLocationUiState.ErrorSearchLocation
+                        SearchLocationUiState.ErrorSearchForecastLocation
                 }
             }
         }

@@ -1,6 +1,7 @@
 package co.bold.weather.views.viewmodels
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import co.bold.weather.data.model.ForecastResponse
 import co.bold.weather.data.model.Location
 import co.bold.weather.domain.usecases.SearchByKeywordUseCase
 import co.bold.weather.domain.usecases.SearchForecastByKeywordUseCase
@@ -63,5 +64,23 @@ class WeatherViewModelTest {
         coEvery { searchByKeywordUseCase.invoke(any()) } returns flowOf(emptyList())
         viewModel.getLocationsByKeyword("keyword")
         assert(viewModel.searchKeywordState.value is SearchLocationUiState.ErrorSearchLocation)
+    }
+
+    @Test
+    fun `test searchForecastByKeywordUseCase success`() = testScope.runBlockingTest {
+        coEvery { searchForecastByKeywordUseCase.invoke(any()) } returns flowOf(
+            ForecastResponse()
+        )
+        viewModel.getLocationsForecastByKeyword("keyword")
+        assert(viewModel.searchKeywordState.value is SearchLocationUiState.SuccessSearchForecastLocation)
+    }
+
+    @Test
+    fun `test searchForecastByKeywordUseCase failure`() = testScope.runBlockingTest {
+        coEvery { searchForecastByKeywordUseCase.invoke(any()) } returns flowOf(
+            null
+        )
+        viewModel.getLocationsForecastByKeyword("keyword")
+        assert(viewModel.searchKeywordState.value is SearchLocationUiState.ErrorSearchForecastLocation)
     }
 }
