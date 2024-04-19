@@ -19,6 +19,7 @@ class WeatherViewModel(
     val searchKeywordState: LiveData<SearchLocationUiState> = _searchKeywordState
 
     fun getLocationsByKeyword(keyword: String) {
+        _searchKeywordState.value = SearchLocationUiState.Loading
         viewModelScope.launch {
             searchByKeywordUseCase.invoke(keyword).collect {
                 if (it.isNotEmpty()) {
@@ -31,6 +32,7 @@ class WeatherViewModel(
     }
 
     fun getLocationsForecastByKeyword(keyword: String) {
+        _searchKeywordState.value = SearchLocationUiState.Loading
         viewModelScope.launch {
             searchForecastByKeywordUseCase.invoke(keyword).collect {
                 if (it?.forecast != null) {

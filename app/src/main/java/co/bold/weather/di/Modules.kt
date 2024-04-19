@@ -6,6 +6,7 @@ import co.bold.weather.data.repository.WeatherAppRepositoryImpl
 import co.bold.weather.domain.WeatherAppRepository
 import co.bold.weather.domain.usecases.SearchByKeywordUseCase
 import co.bold.weather.domain.usecases.SearchForecastByKeywordUseCase
+import co.bold.weather.views.viewmodels.LocationsAdapterViewModel
 import co.bold.weather.views.viewmodels.WeatherViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,4 +48,5 @@ val useCasesModule = module {
 
 val viewModelModules = module {
     viewModel { WeatherViewModel(get(), get()) }
+    viewModel { LocationsAdapterViewModel() }
 }
