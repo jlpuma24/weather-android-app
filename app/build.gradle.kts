@@ -68,4 +68,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.core.testing)
+
+    implementation(libs.github.glide)
 }
