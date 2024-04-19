@@ -31,7 +31,10 @@ class LocationAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    locationsAdapterViewModel.onItemClick(locations[position])
+                    val location = locations[position]
+                    val name = location.name ?: ""
+                    val country = location.country ?: ""
+                    locationsAdapterViewModel.onItemClick("$name, $country")
                 }
             }
         }

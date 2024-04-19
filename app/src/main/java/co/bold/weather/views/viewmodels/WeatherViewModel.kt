@@ -35,9 +35,9 @@ class WeatherViewModel(
         _searchKeywordState.value = SearchLocationUiState.Loading
         viewModelScope.launch {
             searchForecastByKeywordUseCase.invoke(keyword).collect {
-                if (it?.forecast != null) {
+                if (it != null) {
                     _searchKeywordState.value =
-                        SearchLocationUiState.SuccessSearchForecastLocation(it.forecast)
+                        SearchLocationUiState.SuccessSearchForecastLocation(it)
                 } else {
                     _searchKeywordState.value =
                         SearchLocationUiState.ErrorSearchForecastLocation

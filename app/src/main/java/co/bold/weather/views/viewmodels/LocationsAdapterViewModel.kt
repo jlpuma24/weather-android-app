@@ -11,7 +11,7 @@ class LocationsAdapterViewModel : ViewModel() {
     val event: LiveData<LocationEventClick>
         get() = _event
 
-    fun onItemClick(location: Location) {
+    fun onItemClick(location: String) {
         _event.value = LocationEventClick.ItemClick(location)
     }
 }

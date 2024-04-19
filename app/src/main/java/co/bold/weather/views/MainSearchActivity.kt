@@ -1,6 +1,7 @@
 package co.bold.weather.views
 
 import LocationAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
@@ -9,7 +10,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.bold.weather.data.model.Location
-import co.bold.weather.databinding.ActivityMainBinding
+import co.bold.weather.databinding.ActivitySearchMainBinding
 import co.bold.weather.views.extensions.hideKeyboard
 import co.bold.weather.views.states.LocationEventClick
 import co.bold.weather.views.states.SearchLocationUiState
@@ -17,15 +18,15 @@ import co.bold.weather.views.viewmodels.LocationsAdapterViewModel
 import co.bold.weather.views.viewmodels.WeatherViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainSearchActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySearchMainBinding
     private val weatherViewModel: WeatherViewModel by viewModel()
     private val locationsAdapterViewModel: LocationsAdapterViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySearchMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         observeViewModel()
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        weatherViewModel.searchKeywordState.observe(this@MainActivity) { state ->
+        weatherViewModel.searchKeywordState.observe(this@MainSearchActivity) { state ->
             when (state) {
                 is SearchLocationUiState.ErrorSearchLocation -> {
                     binding.progressBar.isVisible = false
@@ -74,26 +75,24 @@ class MainActivity : AppCompatActivity() {
                     prepareAdapter(state.list)
                 }
 
-                is SearchLocationUiState.ErrorSearchForecastLocation -> {
-                    binding.progressBar.isVisible = false
-                }
-
-                is SearchLocationUiState.SuccessSearchForecastLocation -> {
-                    binding.progressBar.isVisible = false
+                else -> {
+                    // No-op
                 }
             }
         }
-        locationsAdapterViewModel.event.observe(this@MainActivity) { event ->
+        locationsAdapterViewModel.event.observe(this@MainSearchActivity) { event ->
             when (event) {
                 is LocationEventClick.ItemClick -> {
                     val location = event.location
-                    requestForecastLocation(location.name ?: "")
+                    requestForecastLocation(location)
                 }
             }
         }
     }
 
-    private fun requestForecastLocation(keyword: String) {
-        weatherViewModel.getLocationsForecastByKeyword(keyword)
+    private fun requestForecastLocation(location: String) {
+        startActivity(Intent(this@MainSearchActivity, ForecastDetailActivity::class.java).apply {
+            putExtra("location", location)
+        })
     }
 }

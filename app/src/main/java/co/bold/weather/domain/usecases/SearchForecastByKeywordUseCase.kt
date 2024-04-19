@@ -10,7 +10,7 @@ class SearchForecastByKeywordUseCase(private val weatherAppRepository: WeatherAp
 
     suspend fun invoke(keyword: String): Flow<ForecastResponse?> = flow {
         val response = weatherAppRepository.getForecastByKeywordAndDays(keyword)
-        if (!response.isSuccessful) {
+        if (response.isSuccessful) {
             emit(response.body())
         } else {
             emit(null)
