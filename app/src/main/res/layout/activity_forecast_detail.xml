@@ -1,116 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/myToolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        app:titleTextColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/pbLoader"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/myToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextColor="@android:color/white" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myToolbar" />
+        <ProgressBar
+            android:id="@+id/pbLoader"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivWeatherCondition"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ten_dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/myToolbar" />
 
-    <ProgressBar
-        android:id="@+id/pbLoaderImage"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/ivWeatherCondition"
-        app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
-        app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
-        app:layout_constraintTop_toTopOf="@+id/ivWeatherCondition" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivWeatherCondition"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/fifteen_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCurrentTemperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
-        app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocalDate" />
+        <ProgressBar
+            android:id="@+id/pbLoaderImage"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivWeatherCondition"
+            app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
+            app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
+            app:layout_constraintTop_toTopOf="@+id/ivWeatherCondition" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvCurrentCondition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/tvCurrentTemperature"
-        app:layout_constraintStart_toStartOf="@+id/tvCurrentTemperature"
-        app:layout_constraintTop_toBottomOf="@+id/tvCurrentTemperature" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/thirty_sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
+            app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocalDate" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLocalDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
-        app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
-        app:layout_constraintTop_toBottomOf="@+id/ivWeatherCondition" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentCondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fifteen_sp"
+            app:layout_constraintEnd_toEndOf="@+id/tvCurrentTemperature"
+            app:layout_constraintStart_toStartOf="@+id/tvCurrentTemperature"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentTemperature" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNextDays"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="15dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNextDays" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLocalDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fifteen_sp"
+            app:layout_constraintEnd_toEndOf="@+id/ivWeatherCondition"
+            app:layout_constraintStart_toStartOf="@+id/ivWeatherCondition"
+            app:layout_constraintTop_toBottomOf="@+id/ivWeatherCondition" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvNextDays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next_days"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@+id/rvNextDays"
-        app:layout_constraintTop_toBottomOf="@+id/tvCurrentCondition" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNextDays"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fifteen_dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNextDays" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNextDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/fifteen_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:text="@string/next_days"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentCondition" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

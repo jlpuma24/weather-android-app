@@ -3,6 +3,7 @@ package co.bold.weather.views.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import co.bold.weather.R
 import co.bold.weather.data.model.ForecastDay
 import co.bold.weather.databinding.AdapterNextDaysBinding
 import co.bold.weather.views.extensions.cleanUrl
@@ -35,7 +36,10 @@ class NextDaysAdapter(
         fun bind(forecastDay: ForecastDay) {
             val day = forecastDay.day
             binding.apply {
-                tvNextDay.text = " / ${forecastDay.date?.toCurrentDayNameFormat()}"
+                tvNextDay.text = binding.root.context.getString(
+                    R.string.format_next_days,
+                    forecastDay.date?.toCurrentDayNameFormat()
+                )
                 imageView.setUrlImage(day?.condition?.icon?.cleanUrl() ?: "", binding.pbLoader)
                 tvTemperature.text = toMaxAndMinFormat(day?.maxtempC ?: 0.0, day?.mintempC ?: 0.0)
             }

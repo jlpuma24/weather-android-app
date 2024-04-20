@@ -4,4 +4,7 @@
     <string name="welcome">Welcome!</string>
     <string name="title_description">Please search and pick a location into the box, to see the next three days forecast</string>
     <string name="next_days">Next 3 days:</string>
+    <string name="avg_format">%1$s / Avg: %2$s</string>
+    <string name="city_country_format">%1$s, %2$s</string>
+    <string name="format_next_days">" / %1$s"</string>
 </resources>

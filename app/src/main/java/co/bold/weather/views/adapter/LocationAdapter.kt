@@ -3,6 +3,7 @@ package co.bold.weather.views.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import co.bold.weather.R
 import co.bold.weather.data.model.Location
 import co.bold.weather.databinding.AdapterItemCountryBinding
 import co.bold.weather.views.viewmodels.LocationsAdapterViewModel
@@ -44,7 +45,8 @@ class LocationAdapter(
         fun bind(location: Location) {
             val name = location.name ?: ""
             val country = location.country ?: ""
-            binding.textView.text = "$name, $country"
+            binding.textView.text =
+                binding.root.context.getString(R.string.city_country_format, name, country)
         }
     }
 }

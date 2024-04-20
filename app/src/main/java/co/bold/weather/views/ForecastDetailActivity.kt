@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import co.bold.weather.R
 import co.bold.weather.data.model.ForecastResponse
 import co.bold.weather.databinding.ActivityForecastDetailBinding
 import co.bold.weather.views.adapter.NextDaysAdapter
@@ -18,17 +19,34 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForecastDetailActivity : AppCompatActivity() {
 
+    private companion object {
+        const val FORECAST_RESPONSE_KEY = "forecast_response"
+    }
+
     private lateinit var binding: ActivityForecastDetailBinding
     private val weatherViewModel: WeatherViewModel by viewModel()
+    private var forecastResponse: ForecastResponse? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForecastDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        savedInstanceState?.let {
+            forecastResponse = it.getParcelable(FORECAST_RESPONSE_KEY)
+            setValues()
+        } ?: run {
+            listenViewModel()
+            weatherViewModel.getLocationsForecastByKeyword(intent.getStringExtra("location") ?: "")
+        }
+
         prepareToolbar()
-        listenViewModel()
-        weatherViewModel.getLocationsForecastByKeyword(intent.getStringExtra("location") ?: "")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(FORECAST_RESPONSE_KEY, forecastResponse)
     }
 
     private fun prepareToolbar() {
@@ -38,19 +56,23 @@ class ForecastDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
-    private fun setValues(forecastResponse: ForecastResponse?) {
+    private fun setValues() {
         binding.apply {
             pbLoaderImage.isVisible = true
             tvNextDays.isVisible = true
             rvNextDays.isVisible = true
             forecastResponse?.apply {
-                val city = location?.name
-                val country = location?.country
-                tvLocation.text = "$city, $country"
+                tvLocation.text =
+                    getString(R.string.city_country_format, location?.name, location?.country)
                 tvLocalDate.text = location?.localtime?.toCurrentDayFormat()
                 current?.apply {
                     tvCurrentCondition.text = condition?.text ?: ""
-                    tvCurrentTemperature.text = tempC?.toCelsius()
+                    tvCurrentTemperature.text =
+                        getString(
+                            R.string.avg_format,
+                            tempC?.toCelsius(),
+                            forecast?.forecastday?.firstOrNull()?.day?.avgtempC?.toCelsius() ?: ""
+                        )
                     ivWeatherCondition.setUrlImage(condition?.icon?.cleanUrl() ?: "", pbLoaderImage)
                 }
                 rvNextDays.layoutManager = LinearLayoutManager(this@ForecastDetailActivity)
@@ -81,7 +103,8 @@ class ForecastDetailActivity : AppCompatActivity() {
 
                 is SearchLocationUiState.SuccessSearchForecastLocation -> {
                     binding.pbLoader.isVisible = false
-                    setValues(state.forecast)
+                    forecastResponse = state.forecast
+                    setValues()
                 }
 
                 else -> {
