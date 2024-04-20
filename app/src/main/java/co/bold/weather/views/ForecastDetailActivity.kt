@@ -1,24 +1,19 @@
 package co.bold.weather.views
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import co.bold.weather.R
-import co.bold.weather.data.model.Forecast
+import androidx.recyclerview.widget.LinearLayoutManager
 import co.bold.weather.data.model.ForecastResponse
 import co.bold.weather.databinding.ActivityForecastDetailBinding
+import co.bold.weather.views.adapter.NextDaysAdapter
 import co.bold.weather.views.extensions.cleanUrl
+import co.bold.weather.views.extensions.setUrlImage
 import co.bold.weather.views.extensions.toCelsius
 import co.bold.weather.views.extensions.toCurrentDayFormat
 import co.bold.weather.views.states.SearchLocationUiState
 import co.bold.weather.views.viewmodels.WeatherViewModel
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ForecastDetailActivity : AppCompatActivity() {
@@ -31,14 +26,24 @@ class ForecastDetailActivity : AppCompatActivity() {
         binding = ActivityForecastDetailBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        prepareToolbar()
         listenViewModel()
         weatherViewModel.getLocationsForecastByKeyword(intent.getStringExtra("location") ?: "")
     }
 
-    private fun setValues(forecast: ForecastResponse?) {
+    private fun prepareToolbar() {
+        setSupportActionBar(binding.myToolbar)
+        supportActionBar?.title = null
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    private fun setValues(forecastResponse: ForecastResponse?) {
         binding.apply {
             pbLoaderImage.isVisible = true
-            forecast?.apply {
+            tvNextDays.isVisible = true
+            rvNextDays.isVisible = true
+            forecastResponse?.apply {
                 val city = location?.name
                 val country = location?.country
                 tvLocation.text = "$city, $country"
@@ -46,42 +51,21 @@ class ForecastDetailActivity : AppCompatActivity() {
                 current?.apply {
                     tvCurrentCondition.text = condition?.text ?: ""
                     tvCurrentTemperature.text = tempC?.toCelsius()
-                    Glide
-                        .with(this@ForecastDetailActivity)
-                        .load(condition?.icon?.cleanUrl())
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                pbLoaderImage.isVisible = false
-                                ivWeatherCondition.setImageDrawable(
-                                    ContextCompat.getDrawable(
-                                        this@ForecastDetailActivity,
-                                        R.drawable.not_available_weather
-                                    )
-                                )
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: Drawable,
-                                model: Any,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                pbLoaderImage.isVisible = false
-                                return false
-                            }
-                        })
-                        .centerCrop()
-                        .into(ivWeatherCondition)
+                    ivWeatherCondition.setUrlImage(condition?.icon?.cleanUrl() ?: "", pbLoaderImage)
                 }
+                rvNextDays.layoutManager = LinearLayoutManager(this@ForecastDetailActivity)
+                rvNextDays.adapter = NextDaysAdapter(forecast?.forecastday?.takeLast(3) ?: listOf())
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun listenViewModel() {

@@ -3,4 +3,5 @@
     <string name="placeholder_autocomplete">City ex: Medellin</string>
     <string name="welcome">Welcome!</string>
     <string name="title_description">Please search and pick a location into the box, to see the next three days forecast</string>
+    <string name="next_days">Next 3 days:</string>
 </resources>

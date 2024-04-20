@@ -17,7 +17,7 @@ interface WeatherAppSearchApiService {
     @GET(BuildConfig.FORECAST_PATH)
     suspend fun getForecastByKeywordAndDays(
         @Query("q") query: String,
-        @Query("days") days: Int = 3,
+        @Query("days") days: Int = 4,
         @Query("key") apiKey: String = BuildConfig.API_KEY,
     ): Response<ForecastResponse>
 }

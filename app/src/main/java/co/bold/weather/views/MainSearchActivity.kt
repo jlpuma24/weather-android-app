@@ -1,6 +1,6 @@
 package co.bold.weather.views
 
-import LocationAdapter
+import co.bold.weather.views.adapter.LocationAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
