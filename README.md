@@ -2,13 +2,14 @@
 
 This is a small project using the Weather Api to display the temperature of a specific city based on user search
 
-![Splash Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698296.png)
+| Splash Screen | Search Screen |
+|---|---|
+| <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698296.png" alt="Splash Screen" height="300" width="200"> | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698286.png" alt="Search Screen" height="300" width="200"> |
 
-![Search Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698286.png)
+| Searching Screen | Detail Screen |
+|---|---|
+| <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698406.png" alt="Searching Screen" height="300" width="200"> | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698381.png" alt="Detail Screen" height="300" width="200"> |
 
-![Searching Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698406.png)
-
-![Detail Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698381.png)
 
 ## Project scope
 
