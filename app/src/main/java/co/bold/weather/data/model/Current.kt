@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Current(
     @SerializedName("temp_c") var tempC: Double? = null,
-    @SerializedName("condition") var condition: Condition? = Condition(),
+    var condition: Condition? = Condition(),
 ): Parcelable

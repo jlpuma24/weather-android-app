@@ -71,12 +71,12 @@ class ForecastDetailActivity : AppCompatActivity() {
                         getString(
                             R.string.avg_format,
                             tempC?.toCelsius(),
-                            forecast?.forecastday?.firstOrNull()?.day?.avgtempC?.toCelsius() ?: ""
+                            forecast?.forecastDayList?.firstOrNull()?.day?.avgTempC?.toCelsius() ?: ""
                         )
                     ivWeatherCondition.setUrlImage(condition?.icon?.cleanUrl() ?: "", pbLoaderImage)
                 }
                 rvNextDays.layoutManager = LinearLayoutManager(this@ForecastDetailActivity)
-                rvNextDays.adapter = NextDaysAdapter(forecast?.forecastday?.takeLast(3) ?: listOf())
+                rvNextDays.adapter = NextDaysAdapter(forecast?.forecastDayList?.takeLast(3) ?: listOf())
             }
         }
     }

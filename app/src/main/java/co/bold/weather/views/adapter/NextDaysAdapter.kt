@@ -41,7 +41,7 @@ class NextDaysAdapter(
                     forecastDay.date?.toCurrentDayNameFormat()
                 )
                 imageView.setUrlImage(day?.condition?.icon?.cleanUrl() ?: "", binding.pbLoader)
-                tvTemperature.text = toMaxAndMinFormat(day?.maxtempC ?: 0.0, day?.mintempC ?: 0.0)
+                tvTemperature.text = toMaxAndMinFormat(day?.maxTempC ?: 0.0, day?.minTempC ?: 0.0)
             }
         }
 

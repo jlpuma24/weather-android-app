@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Forecast(
-    @SerializedName("forecastday") var forecastday: ArrayList<ForecastDay> = arrayListOf()
+    @SerializedName("forecastday") var forecastDayList: ArrayList<ForecastDay> = arrayListOf()
 ): Parcelable
