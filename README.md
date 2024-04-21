@@ -2,6 +2,8 @@
 
 This is a small project using the Weather Api to display the temperature of a specific city based on user search
 
+<div style="text-align:center">
+
 | Splash Screen                                                                                                                                                                  | Search Screen                                                                                                                                                                  |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698296.png" alt="Splash Screen" height="400" width="200"> | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698286.png" alt="Search Screen" height="400" width="200"> |
@@ -10,6 +12,7 @@ This is a small project using the Weather Api to display the temperature of a sp
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698406.png" alt="Searching Screen" height="400" width="200"> | <img src="https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698381.png" alt="Detail Screen" height="400" width="200"> |
 
+</div>
 
 ## Project scope
 
