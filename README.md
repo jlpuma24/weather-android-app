@@ -29,7 +29,7 @@ Java: 17
 ## Instructions to build
 
 * Open Android Studio 
-* By security proposals to expose API key, this one must be provided on the `gradle.properties` file at line 24.
+* By security proposals to expose API key, this one must be provided on the `gradle.properties` file at line 25.
 * Sync gradle project.
 * Run the project.
 * Enjoy.
