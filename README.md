@@ -14,15 +14,6 @@ This is a small project using the Weather Api to display the temperature of a sp
 
 </div>
 
-## Project scope
-
-* A Splash that presents the application.
-* A screen where you can search for given locations a text.
-* As the text is entered, the result of the API should be displayed.
-* For each of the locations obtained, the following will be displayed: The name of the location (name) and the country (country)
-* Each location must allow viewing detailed information for the day that includes: location name, 3 days including the current forecast with its respective both graphical and textual status, in addition to the average temperature in degrees centigrade.
-* Guarantee a minimum change in screen orientation, allowing you to view information appropriately.
-
 ## IDE Specs
 
 ```
@@ -34,6 +25,20 @@ Gradle: 8.4
 Java: 17
 
 ```
+
 ## Instructions to build
 
-There are not specific instructions to build since this is a regular android project, just want to have this specific Android Studio version, Java and Gradle version and that will be it.
+* Open Android Studio 
+* By security proposals to expose API key, this one must be provided on the `gradle.properties` file at line 24.
+* Sync gradle project.
+* Run the project.
+* Enjoy.
+
+## Project scope
+
+* A Splash that presents the application.
+* A screen where you can search for given locations a text.
+* As the text is entered, the result of the API should be displayed.
+* For each of the locations obtained, the following will be displayed: The name of the location (name) and the country (country)
+* Each location must allow viewing detailed information for the day that includes: location name, 3 days including the current forecast with its respective both graphical and textual status, in addition to the average temperature in degrees centigrade.
+* Guarantee a minimum change in screen orientation, allowing you to view information appropriately.

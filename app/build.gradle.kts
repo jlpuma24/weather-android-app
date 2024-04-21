@@ -8,6 +8,8 @@ android {
     namespace = "co.bold.weather"
     compileSdk = 34
 
+    val apiKey = project.findProperty("apiKey")
+
     defaultConfig {
         applicationId = "co.bold.weather"
         minSdk = 24
@@ -16,7 +18,7 @@ android {
         versionName = "1.0"
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_KEY", "\"de5553176da64306b86153651221606\"")
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
         buildConfigField("String", "BASE_URL", "\"https://api.weatherapi.com/v1/\"")
         buildConfigField("String", "SEARCH_PATH", "\"search.json\"")
         buildConfigField("String", "FORECAST_PATH", "\"forecast.json\"")
