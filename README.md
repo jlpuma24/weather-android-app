@@ -1,7 +1,8 @@
 # Weather Android Application
 
-![Splash Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698296.png)
+This is a small project using the Weather Api to display the temperature of a specific city based on user search
 
+![Splash Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698296.png)
 
 ![Search Screen](https://github.com/jlpuma24/weather-android-app/blob/master/app/src/main/assets/screenshots/Screenshot_1713698286.png)
 
